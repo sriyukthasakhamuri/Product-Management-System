@@ -57,10 +57,13 @@ exports.createAsset = async (req, res) => {
 // Get all assets
 exports.getAssets = async (req, res) => {
   try {
-    const assets = await Asset.find();
+    const assets = await Asset.find()
+      .populate('vendor', 'name contactInfo')
+      .sort({ purchaseDate: -1 }); // Sort by purchase date, newest first
+    
     res.json(assets);
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(500).json({ message: error.message });
   }
 };
 

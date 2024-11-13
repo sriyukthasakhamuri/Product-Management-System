@@ -26,12 +26,17 @@ export const createAsset = async (assetData, token) => {
 
 // Function to get all assets
 export const getAssets = async (token) => {
-  const response = await axios.get(`${API_URL}/assets`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  return response.data;
+  try {
+    const response = await axios.get(`${API_URL}/assets`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching assets:', error);
+    return [];
+  }
 };
 
 // Create purchase order
