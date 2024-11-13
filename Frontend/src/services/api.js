@@ -34,10 +34,47 @@ export const getAssets = async (token) => {
   return response.data;
 };
 
+// Create purchase order
+export const createPurchaseOrder = async (orderData, token) => {
+  const response = await axios.post(`${API_URL}/purchase-orders`, orderData, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+};
+
+// Get all purchase orders
+export const getPurchaseOrders = async (token) => {
+  const response = await axios.get(`${API_URL}/purchase-orders`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+};
+
+// Update purchase order status
+export const updatePurchaseOrderStatus = async (orderId, status, token) => {
+  const response = await axios.patch(
+    `${API_URL}/purchase-orders/${orderId}/status`,
+    { status },
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+  return response.data;
+};
+
 // Export all functions
 export default {
   registerUser,
   loginUser,
   createAsset,
   getAssets,
+  createPurchaseOrder,
+  getPurchaseOrders,
+  updatePurchaseOrderStatus,
 };

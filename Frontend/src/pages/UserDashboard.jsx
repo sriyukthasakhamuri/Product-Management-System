@@ -17,9 +17,9 @@ const UserDashboard = () => {
   }, []);
 
   return (
-    <Container>
+    <Container sx={{ mt: 12, mb: 4 }}>
       <Typography variant="h4" gutterBottom>User Dashboard</Typography>
-      <Typography variant="h6">Your Assets</Typography>
+      <Typography variant="h6">Your Products</Typography>
       {assets.length > 0 ? (
         assets.map(asset => (
           <Typography key={asset._id}>{asset.type} - {asset.serialNumber}</Typography>

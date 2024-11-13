@@ -4,34 +4,68 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
 const NavBar = () => {
-  const { user, logout } = useContext(AuthContext); // Get user info and logout function
+  const { user, logout } = useContext(AuthContext);
 
   const handleLogout = () => {
-    logout(); // Call the logout function from context
+    logout();
   };
 
   return (
     <AppBar position="fixed">
       <Toolbar>
-        <Typography variant="h6" style={{ flexGrow: 1 }}>
-          Asset Control System
-        </Typography>
-        {user ? ( // Check if user is logged in
+        <Link to="/" style={{ textDecoration: 'none', color: 'white', flexGrow: 1 }}>
+          <Typography 
+            variant="h6" 
+            style={{ 
+              cursor: 'pointer'
+            }}
+          >
+            Product Management System
+          </Typography>
+        </Link>
+        {user ? (
           <>
-            <Link to="/dashboard/manager" style={{ textDecoration: 'none', color: 'white' }}>
-              <Button color="inherit">Admin Dashboard</Button>
-            </Link>
-            <Link to="/dashboard/user" style={{ textDecoration: 'none', color: 'white' }}>
-              <Button color="inherit">User Dashboard</Button>
-            </Link>
-            <Link to="/dashboard/vendor" style={{ textDecoration: 'none', color: 'white' }}>
-              <Button color="inherit">Vendor Dashboard</Button>
-            </Link>
+            {user.role === 'manager' && (
+              <>
+                <Link to="/dashboard/manager" style={{ textDecoration: 'none', color: 'white' }}>
+                  <Button color="inherit">Manager Dashboard</Button>
+                </Link>
+                <Link to="/dashboard/user" style={{ textDecoration: 'none', color: 'white' }}>
+                  <Button color="inherit">User Dashboard</Button>
+                </Link>
+                <Link to="/dashboard/vendor" style={{ textDecoration: 'none', color: 'white' }}>
+                  <Button color="inherit">Vendor Dashboard</Button>
+                </Link>
+                <Link to="/purchase-orders" style={{ textDecoration: 'none', color: 'white' }}>
+                  <Button color="inherit">Purchase Orders</Button>
+                </Link>
+              </>
+            )}
+            {user.role === 'user' && (
+              <>
+                <Link to="/dashboard/user" style={{ textDecoration: 'none', color: 'white' }}>
+                  <Button color="inherit">User Dashboard</Button>
+                </Link>
+                <Link to="/purchase-orders" style={{ textDecoration: 'none', color: 'white' }}>
+                  <Button color="inherit">Purchase Orders</Button>
+                </Link>
+              </>
+            )}
+            {user.role === 'vendor' && (
+              <>
+                <Link to="/dashboard/vendor" style={{ textDecoration: 'none', color: 'white' }}>
+                  <Button color="inherit">Vendor Dashboard</Button>
+                </Link>
+                <Link to="/purchase-orders" style={{ textDecoration: 'none', color: 'white' }}>
+                  <Button color="inherit">Purchase Orders</Button>
+                </Link>
+              </>
+            )}
             <Button color="inherit" onClick={handleLogout}>Logout</Button>
           </>
         ) : (
           <>
-            <Link to="/" style={{ textDecoration: 'none', color: 'white' }}>
+            <Link to="/login" style={{ textDecoration: 'none', color: 'white' }}>
               <Button color="inherit">Login</Button>
             </Link>
             <Link to="/register" style={{ textDecoration: 'none', color: 'white' }}>

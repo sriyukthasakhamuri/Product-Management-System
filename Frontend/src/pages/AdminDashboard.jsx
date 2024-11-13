@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Typography, Button, TextField, Grid, Box, Snackbar } from '@mui/material';
+import { Container, Typography, Button, TextField, Box, Snackbar } from '@mui/material';
+import Grid from '@mui/material/Grid2';
 import api from '../services/api';
 
 const AdminDashboard = () => {
@@ -64,13 +65,13 @@ const AdminDashboard = () => {
   }, []);
 
   return (
-    <Container>
-      <Typography variant="h4" gutterBottom>Admin Dashboard</Typography>
+    <Container sx={{ mt: 12, mb: 4 }}>
+      <Typography variant="h4" gutterBottom>Manager Dashboard</Typography>
 
       <Box sx={{ mb: 4 }}>
-        <Typography variant="h6">Create Asset</Typography>
+        <Typography variant="h6">Create product</Typography>
         <Grid container spacing={2}>
-          <Grid item xs={12} sm={6}>
+          <Grid item size={6}>
             <TextField
               label="Type"
               fullWidth
@@ -79,7 +80,7 @@ const AdminDashboard = () => {
               onChange={handleInputChange}
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item size={6}>
             <TextField
               label="Product Name" // New Product Name field
               fullWidth
@@ -88,7 +89,7 @@ const AdminDashboard = () => {
               onChange={handleInputChange}
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item size={6}>
             <TextField
               label="Serial Number"
               fullWidth
@@ -97,7 +98,7 @@ const AdminDashboard = () => {
               onChange={handleInputChange}
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item size={6}>
             <TextField
               label="Purchase Date"
               type="date"
@@ -110,7 +111,7 @@ const AdminDashboard = () => {
               }}
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item size={6}>
             <TextField
               label="Location"
               fullWidth
@@ -119,7 +120,7 @@ const AdminDashboard = () => {
               onChange={handleInputChange}
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item size={6}>
             <TextField
               label="Status"
               select
@@ -136,7 +137,7 @@ const AdminDashboard = () => {
               <option value="maintenance">Maintenance</option>
             </TextField>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item size={6}>
             <TextField
               label="Price"
               type="number"
@@ -146,7 +147,7 @@ const AdminDashboard = () => {
               onChange={handleInputChange}
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item size={6}>
             <TextField
               label="Quantity"
               type="number"
@@ -156,7 +157,7 @@ const AdminDashboard = () => {
               onChange={handleInputChange}
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item size={6}>
             <TextField
               label="Vendor Name"
               fullWidth
@@ -165,7 +166,7 @@ const AdminDashboard = () => {
               onChange={handleInputChange}
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item size={6}>
             <TextField
               label="Vendor Contact Info"
               fullWidth
@@ -181,11 +182,11 @@ const AdminDashboard = () => {
           onClick={handleCreateAsset}
           sx={{ mt: 2 }}
         >
-          Create Asset
+          Create Product
         </Button>
       </Box>
 
-      <Typography variant="h6">Assets List</Typography>
+      <Typography variant="h6">Products List</Typography>
       {assets.map(asset => (
         <Typography key={asset._id}>
           {asset.type} - {asset.productName} - {asset.serialNumber}

@@ -22,12 +22,12 @@ const VendorDashboard = () => {
   };
 
   return (
-    <Container>
+    <Container sx={{ mt: 12, mb: 4 }}>
       <Typography variant="h4" gutterBottom>Vendor Dashboard</Typography>
       <Button variant="contained" color="primary" onClick={handleCreateAsset}>
-        Create New Asset
+        Create New Product  
       </Button>
-      <Typography variant="h6" gutterBottom>Your Assets</Typography>
+      <Typography variant="h6" gutterBottom>Your Products</Typography>
       {assets.length > 0 ? (
         assets.map(asset => (
           <Typography key={asset._id}>{asset.type} - {asset.serialNumber}</Typography>

@@ -1,21 +1,24 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { AuthProvider } from './context/AuthContext'; // Import AuthProvider
-import NavBar from './components/NavBar'; // Import NavBar
+import { AuthProvider } from './context/AuthContext';
+import NavBar from './components/NavBar';
 import Login from './components/Login';
 import Register from './components/Register';
+import HomePage from './pages/HomePage';
 import AdminDashboard from './pages/AdminDashboard';
 import UserDashboard from './pages/UserDashboard';
 import VendorDashboard from './pages/VendorDashboard';
-import ProtectedRoute from './ProtectedRoute'; // Import ProtectedRoute
+import ProtectedRoute from './ProtectedRoute';
+import PurchaseOrderPage from './pages/PurchaseOrderPage';
 
 const App = () => {
   return (
     <Router>
       <AuthProvider>
-        <NavBar /> {/* Include NavBar here */}
+        <NavBar />
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route
             path="/dashboard/manager"
@@ -28,7 +31,7 @@ const App = () => {
           <Route
             path="/dashboard/user"
             element={
-              <ProtectedRoute roles={['user']}>
+              <ProtectedRoute roles={['user', 'manager']}>
                 <UserDashboard />
               </ProtectedRoute>
             }
@@ -36,8 +39,16 @@ const App = () => {
           <Route
             path="/dashboard/vendor"
             element={
-              <ProtectedRoute roles={['vendor']}>
+              <ProtectedRoute roles={['vendor', 'manager']}>
                 <VendorDashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/purchase-orders"
+            element={
+              <ProtectedRoute roles={['manager', 'vendor', 'user']}>
+                <PurchaseOrderPage />
               </ProtectedRoute>
             }
           />
