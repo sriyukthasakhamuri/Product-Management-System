@@ -60,21 +60,27 @@ const UserDashboard = () => {
   if (loading && assets.length === 0) {
     return (
       <Container sx={{ mt: 12, mb: 4 }}>
-        <Typography>Loading assets...</Typography>
+        <Typography>Loading products...</Typography>
       </Container>
     );
   }
 
   return (
-    <Container sx={{ mt: 12, mb: 4 }}>
+    <Container sx={{ 
+      flexGrow: 1, 
+      mt: 10, // Set a fixed top margin
+      mb: 12,
+      pt: 50, // Added top padding
+      minHeight: 'calc(100vh - 100px)', // Ensure the Box has a minimum height
+    }}>
       <Typography variant="h4" gutterBottom>User Dashboard</Typography>
-      <Typography variant="h6" gutterBottom>Available Assets</Typography>
+      <Typography variant="h6" gutterBottom>Available Products</Typography>
       
       <TableContainer component={Paper} sx={{ mt: 3 }}>
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Asset Type</TableCell>
+              <TableCell>Product Type</TableCell>
               <TableCell>Product Name</TableCell>
               <TableCell>Serial Number</TableCell>
               <TableCell>Location</TableCell>
@@ -111,7 +117,7 @@ const UserDashboard = () => {
             ) : (
               <TableRow>
                 <TableCell colSpan={8} align="center">
-                  No assets found.
+                  No products found.
                 </TableCell>
               </TableRow>
             )}

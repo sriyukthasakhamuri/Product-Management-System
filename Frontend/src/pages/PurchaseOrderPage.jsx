@@ -60,7 +60,13 @@ const PurchaseOrderPage = () => {
   }
 
   return (
-    <Container sx={{ mt: 12, mb: 4 }}>
+    <Container sx={{ 
+      flexGrow: 1, 
+      mt: 15, // Set a fixed top margin
+      mb: 12,
+      pt: 50, // Added top padding
+      minHeight: 'calc(100vh - 100px)', // Ensure the Box has a minimum height
+    }}>
       <Typography variant="h4" gutterBottom>
         Purchase Order Management
       </Typography>

@@ -95,9 +95,10 @@ const AdminDashboard = () => {
   return (
     <Box sx={{ 
       flexGrow: 1, 
-      mt: { xs: 26, sm: 52 }, // Increased top margin
+      mt: 40, // Set a fixed top margin
       mb: 12,
-      pt: 16 // Added top padding
+      pt: 100, // Added top padding
+      minHeight: 'calc(100vh - 100px)', // Ensure the Box has a minimum height
     }}>
       <Container maxWidth="xl" sx={{ mt: 4 }}> {/* Added container margin */}
         <Box sx={{ py: 3 }}>
